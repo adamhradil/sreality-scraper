@@ -1,7 +1,7 @@
 import scrapy
 import json
 
-from sreality.items import SrealityItem
+from sreality_scraper.sreality.items import SrealityItem
 
 class SrealitySpider(scrapy.Spider):
     name = "sreality"

@@ -5,6 +5,7 @@
 
 import scrapy
 
+
 class SrealityItem(scrapy.Item):
     id = scrapy.Field()
     name = scrapy.Field()
