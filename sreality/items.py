@@ -14,7 +14,7 @@ class SrealityItem(scrapy.Item):
     rent = scrapy.Field()
     service_fees = scrapy.Field()
     address = scrapy.Field()
-    address = scrapy.Field()
+    address_accuracy = scrapy.Field()
     description = scrapy.Field()
     disposition = scrapy.Field()
     available_from = scrapy.Field()
