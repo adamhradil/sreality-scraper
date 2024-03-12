@@ -143,7 +143,7 @@ class SrealitySpider(scrapy.Spider):
         yield from self.parse_page(data)
 
         for page in range(1, total_pages):
-            url = f"{self.base_url}?per_page={self.per_page}&page={page}"
+            url = f"{self.base_url}&per_page={self.per_page}&page={page}"
             yield scrapy.Request(url)
 
     def parse_page(self, data):
