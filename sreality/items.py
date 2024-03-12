@@ -31,3 +31,4 @@ class SrealityItem(scrapy.Item):
     parking = scrapy.Field()
     garage = scrapy.Field()
     loggie = scrapy.Field()
+    gps = scrapy.Field()
