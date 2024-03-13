@@ -6,6 +6,7 @@ import scrapy  # type: ignore
 from sreality_scraper.sreality.items import SrealityItem
 
 
+
 class SrealityUrlBuilder:
     @staticmethod
     def map_category_main_cb(category_main_cbx):
@@ -16,7 +17,7 @@ class SrealityUrlBuilder:
             CategoryMainCb.COMMERCIAL.value: "komercni",
             CategoryMainCb.OTHER.value: "ostatni"
         }
-        return mapping.get(category_main_cbx, category_main_cbx)
+        return mapping.get(category_main_cbx)
 
     @staticmethod
     def map_category_sub_cb(category_sub_cbx):
@@ -32,9 +33,10 @@ class SrealityUrlBuilder:
             CategorySubCb.FIVE_PLUS_KK.value: "5+kk",
             CategorySubCb.FIVE_PLUS_ONE.value: "5+1",
             CategorySubCb.SIX_AND_LARGER.value: "6-a-vice",
-            CategorySubCb.UNUSUAL.value: "neobvykle"
+            CategorySubCb.UNUSUAL.value: "neobvykle",
+            CategorySubCb.ROOM.value: "pokoj",
         }
-        return mapping.get(category_sub_cbx, category_sub_cbx)
+        return mapping.get(category_sub_cbx)
 
     @staticmethod
     def map_category_type_cb(category_type_cbx):
@@ -44,7 +46,7 @@ class SrealityUrlBuilder:
             CategoryTypeCb.DRAZBA.value: "drazba",
             CategoryTypeCb.PODIL.value: "podil"
         }
-        return mapping.get(category_type_cbx, category_type_cbx)
+        return mapping.get(category_type_cbx)
 
 
 class CategoryMainCb(Enum):
