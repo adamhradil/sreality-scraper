@@ -203,5 +203,7 @@ class SrealitySpider(scrapy.Spider):
         sreality_item["garage"] = data.get('recommendations_data').get('garage')
         # pets =
         sreality_item["loggie"] = data.get('recommendations_data').get('loggia')
-        sreality_item["gps"] = (data.get('recommendations_data').get('locality_gps_lat'), data.get('recommendations_data').get('locality_gps_lon'))
+        sreality_item["gps_lat"] = data.get('recommendations_data').get('locality_gps_lat')
+        sreality_item["gps_lon"] = data.get('recommendations_data').get('locality_gps_lon')
+
         yield sreality_item
