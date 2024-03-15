@@ -33,7 +33,7 @@ class SrealityUrlBuilder:
             CategorySubCb.FIVE_PLUS_KK.value: "5+kk",
             CategorySubCb.FIVE_PLUS_ONE.value: "5+1",
             CategorySubCb.SIX_AND_LARGER.value: "6-a-vice",
-            CategorySubCb.UNUSUAL.value: "neobvykle",
+            CategorySubCb.UNUSUAL.value: "atypicky",
             CategorySubCb.ROOM.value: "pokoj",
         }
         return mapping.get(category_sub_cbx)
