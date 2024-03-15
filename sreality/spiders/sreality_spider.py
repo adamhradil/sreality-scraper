@@ -176,7 +176,7 @@ class SrealitySpider(scrapy.Spider):
     def parse_estate(self, response):
         sreality_item = SrealityItem()
         data = json.loads(response.text)
-        sreality_item["id"] = data.get('recommendations_data').get('hash_id')
+        sreality_item["id"] = int(data.get('recommendations_data').get('hash_id'))
         sreality_item["type"] = data.get('codeItems').get('building_type_search')
         sreality_item["url"] = self.build_sreality_url(data)
         sreality_item["rent"] = data.get('price_czk').get('value_raw')
