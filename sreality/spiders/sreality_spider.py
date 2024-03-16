@@ -48,6 +48,24 @@ class SrealityUrlBuilder:
         }
         return mapping.get(category_type_cbx)
 
+    @staticmethod
+    def map_furnished_category(furnished_category):
+        mapping = {
+            FurnishedCategory.YES.value: "vybaveny",
+            FurnishedCategory.NO.value: "nevybaveny",
+            FurnishedCategory.PARTIAL.value: "castecne"
+        }
+        return mapping.get(furnished_category)
+
+    @staticmethod
+    def map_building_type(building_type):
+        mapping = {
+            BuildingTypeCategory.PANEL.value: "panelova",
+            BuildingTypeCategory.CIHLA.value: "cihlova",
+            BuildingTypeCategory.OSTATNI.value: "ostatni"
+        }
+        return mapping.get(building_type)
+
 
 class CategoryMainCb(Enum):
     APARTMENT = 1
@@ -121,6 +139,17 @@ class CategoryTypeCb(Enum):
     DRAZBA = 3
     PODIL = 4
 
+
+class FurnishedCategory(Enum):
+    YES = 1
+    NO = 2
+    PARTIAL = 3
+
+
+class BuildingTypeCategory(Enum):
+    PANEL = 1
+    CIHLA = 2
+    OSTATNI = 3
 
 class SrealitySpider(scrapy.Spider):
     name = "sreality"
