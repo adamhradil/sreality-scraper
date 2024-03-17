@@ -151,6 +151,7 @@ class BuildingTypeCategory(Enum):
     CIHLA = 2
     OSTATNI = 3
 
+
 class SrealitySpider(scrapy.Spider):
     name = "sreality"
     allowed_domains = ["www.sreality.cz"]
@@ -158,6 +159,11 @@ class SrealitySpider(scrapy.Spider):
         ("category_main_cb", "1"),
         ("category_type_cb", "2"),
         ("locality_region_id", "10"),
+        ("locality_region_id", "10"),
+        ("per_page", "60"),
+        ("something_more1", "3110"),
+        ("something_more2", "3150"),
+        ("usable_area", "50|80"),
     ]
     base_url = "https://www.sreality.cz/api/cs/v2/estates?" + urlencode(params)
     per_page = 60  # Number of items per page
