@@ -30,6 +30,7 @@ class SrealityItem(scrapy.Item):
     elevator = scrapy.Field()
     parking = scrapy.Field()
     garage = scrapy.Field()
+    garden = scrapy.Field()
     loggie = scrapy.Field()
     gps_lat = scrapy.Field()
     gps_lon = scrapy.Field()

@@ -225,7 +225,7 @@ class SrealitySpider(scrapy.Spider):
         # design =
         sreality_item["balcony"] = data.get('recommendations_data').get('balcony')
         sreality_item["cellar"] = data.get('recommendations_data').get('cellar')
-        # front_garden =
+        sreality_item["garden"] = data.get('recommendations_data').get('garden_area')
         sreality_item["terrace"] = data.get('recommendations_data').get('terrace')
         sreality_item["elevator"] = data.get('recommendations_data').get('elevator')
         sreality_item["parking"] = data.get('recommendations_data').get('parking_lots')
