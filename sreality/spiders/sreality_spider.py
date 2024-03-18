@@ -159,10 +159,9 @@ class SrealitySpider(scrapy.Spider):
         ("category_main_cb", "1"),
         ("category_type_cb", "2"),
         ("locality_region_id", "10"),
-        ("locality_region_id", "10"),
         ("per_page", "60"),
-        ("something_more1", "3110"),
-        ("something_more2", "3150"),
+        ("something_more1", "3110"),  # terrace
+        ("something_more2", "3150"),  # garage
         ("usable_area", "50|80"),
     ]
     base_url = "https://www.sreality.cz/api/cs/v2/estates?" + urlencode(params)
@@ -185,7 +184,7 @@ class SrealitySpider(scrapy.Spider):
 
     def parse_page(self, data):
         if data['_embedded']['estates']:
-            estates = [estate['_links']['self']['href'] for estate in data['_embedded']['estates']]
+            estates = [estate['_links']['self']['href'] for estate in data['_embedded']['estates'] if estate['region_tip'] == 0]
             for href in estates:
                 yield scrapy.Request(f"https://www.sreality.cz/api{href}", callback=self.parse_estate)
 
