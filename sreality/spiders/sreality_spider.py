@@ -160,9 +160,9 @@ class SrealitySpider(scrapy.Spider):
         ("category_type_cb", "2"),
         ("locality_region_id", "10"),
         ("per_page", "60"),
-        ("something_more1", "3110"),  # terrace
-        ("something_more2", "3150"),  # garage
-        ("usable_area", "50|80"),
+        # ("something_more1", "3110"),  # terrace
+        # ("something_more2", "3150"),  # garage
+        # ("usable_area", "50|80"),
     ]
     base_url = "https://www.sreality.cz/api/cs/v2/estates?" + urlencode(params)
     per_page = 60  # Number of items per page
