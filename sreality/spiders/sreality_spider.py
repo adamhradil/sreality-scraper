@@ -167,6 +167,16 @@ class SrealitySpider(scrapy.Spider):
                 "region_entity_id": "3468",
                 "region_entity_type": "municipality",
             },
+            "Brno": {
+                "region": "Brno",
+                "region_entity_id": "5740",
+                "region_entity_type": "municipality",
+            },
+            "Ostrava": {
+                "region": "Ostrava",
+                "region_entity_id": "4730",
+                "region_entity_type": "municipality",
+            },
         }
 
         self.params = [
