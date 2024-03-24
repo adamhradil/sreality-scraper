@@ -160,6 +160,7 @@ class SrealitySpider(scrapy.Spider):
         super(SrealitySpider, self).__init__(*args, **kwargs)
 
         params_mapping = {
+            "sale": "1",
             "rent": "2",
             "apartment": "1",
             "Praha": {
