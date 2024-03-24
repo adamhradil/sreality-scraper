@@ -35,6 +35,10 @@ class SrealityUrlBuilder:
             CategorySubCb.SIX_AND_LARGER.value: "6-a-vice",
             CategorySubCb.UNUSUAL.value: "atypicky",
             CategorySubCb.ROOM.value: "pokoj",
+            CategorySubCb.FAMILY.value: "rodinny",
+            CategorySubCb.HUT.value: "chata",
+            CategorySubCb.MULTIGENERATIONAL.value: "vicegeneracni",
+            CategorySubCb.VILLA.value: "vila",
         }
         return mapping.get(category_sub_cbx)
 
@@ -108,8 +112,12 @@ class CategorySubCb(Enum):
     ACCOMMODATIONS = 29
     RESTAURANTS = 30
     AGRICULTURE = 31
-    APARTMENT_BUILDING = 38
     OTHER_COMMERCIAL = 32
+    HUT = 33
+    FAMILY = 37
+    VILLA = 39
+    APARTMENT_BUILDING = 38
+    MULTIGENERATIONAL = 54
     DOCTORS_OFFICE = 56
     APARTMENTS = 57
     VIRTUAL_OFFICE = 49  # lease only
@@ -163,6 +171,7 @@ class SrealitySpider(scrapy.Spider):
             "sale": "1",
             "rent": "2",
             "apartment": "1",
+            "house": "2",
             "Praha": {
                 "region": "Praha",
                 "region_entity_id": "3468",
@@ -231,6 +240,18 @@ class SrealitySpider(scrapy.Spider):
 
         return f"https://www.sreality.cz/detail/{category_type_cbx}/{category_main_cbx}/{category_sub_cbx}/{locality}/{hash_id}"
 
+    def convert_room_count(self, room_count):
+        # 1 room  -> 1+kk
+        # 2 rooms -> 2+kk
+        # 3 rooms -> 3+kk
+        # 4 rooms -> 4+kk
+        # 5 rooms -> 5+kk
+        # unusual -> unusual
+        room_count = int(room_count)
+        if room_count == 6:
+            return 16
+        return room_count * 2
+
     def parse_estate(self, response):
         sreality_item = SrealityItem()
         data = json.loads(response.text)
@@ -243,7 +264,7 @@ class SrealitySpider(scrapy.Spider):
         sreality_item["address"] = data.get("locality").get("value")
         sreality_item["address_accuracy"] = data.get('locality').get('accuracy')
         sreality_item["description"] = data.get('text').get('value')
-        sreality_item["disposition"] = data.get('seo').get('category_sub_cb')
+        sreality_item["disposition"] = data.get('seo').get('category_sub_cb') if data.get('seo').get('category_main_cb') == 1 else self.convert_room_count(data.get('recommendations_data').get('room_count_cb'))
         sreality_item["available_from"] = self.get_first_or_none(data.get('items'), "Datum nastěhování")
         sreality_item["floor"] = self.get_first_or_none(data.get('items'), "Podlaží")
         sreality_item["area"] = self.get_first_or_none(data.get('items'), "Užitná plocha")
