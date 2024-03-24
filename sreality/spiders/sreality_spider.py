@@ -155,17 +155,30 @@ class BuildingTypeCategory(Enum):
 class SrealitySpider(scrapy.Spider):
     name = "sreality"
     allowed_domains = ["www.sreality.cz"]
-    params = [
-        ("category_main_cb", "1"),
-        ("category_type_cb", "2"),
-        ("locality_region_id", "10"),
-        ("per_page", "60"),
-        # ("something_more1", "3110"),  # terrace
-        # ("something_more2", "3150"),  # garage
-        # ("usable_area", "50|80"),
-    ]
-    base_url = "https://www.sreality.cz/api/cs/v2/estates?" + urlencode(params)
-    per_page = 60  # Number of items per page
+
+    def __init__(self, spider_settings: dict, *args, **kwargs):
+        super(SrealitySpider, self).__init__(*args, **kwargs)
+
+        params_mapping = {
+            "rent": "2",
+            "apartment": "1",
+            "Praha": {
+                "region": "Praha",
+                "region_entity_id": "3468",
+                "region_entity_type": "municipality",
+            },
+        }
+
+        self.params = [
+            ("category_main_cb", params_mapping[spider_settings['estate_type']]),
+            ("category_type_cb", params_mapping[spider_settings['listing_type']]),
+            ("region", params_mapping[spider_settings['location']]['region']),
+            ("region_entity_id", params_mapping[spider_settings['location']]['region_entity_id']),
+            ("region_entity_type", params_mapping[spider_settings['location']]['region_entity_type']),
+            ("per_page", "60"),
+        ]
+        self.base_url = "https://www.sreality.cz/api/cs/v2/estates?" + urlencode(self.params)
+        self.per_page = 60  # Number of items per page
 
     def start_requests(self):
         url = f"{self.base_url}&per_page={self.per_page}"
