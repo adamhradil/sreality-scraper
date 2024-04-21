@@ -258,7 +258,7 @@ class SrealitySpider(scrapy.Spider):
         sreality_item["id"] = int(data.get('recommendations_data').get('hash_id'))
         sreality_item["type"] = data.get('codeItems').get('building_type_search')
         sreality_item["url"] = self.build_sreality_url(data)
-        sreality_item["rent"] = data.get('price_czk').get('value_raw')
+        sreality_item["price"] = data.get('price_czk').get('value_raw')
         sreality_item["service_fees"] = self.get_first_or_none(data.get('items'), "Poznámka k ceně")
         # security_deposit =
         sreality_item["address"] = data.get("locality").get("value")

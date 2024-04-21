@@ -11,7 +11,7 @@ class SrealityItem(scrapy.Item):
     id = scrapy.Field()
     url = scrapy.Field()
     type = scrapy.Field()
-    rent = scrapy.Field()
+    price = scrapy.Field()
     service_fees = scrapy.Field()
     address = scrapy.Field()
     address_accuracy = scrapy.Field()
