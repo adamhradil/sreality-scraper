@@ -167,10 +167,10 @@ class SrealitySpider(scrapy.Spider):
         super(SrealitySpider, self).__init__(*args, **kwargs)
 
         params_mapping = {
-            "sale": "1",
-            "rent": "2",
-            "apartment": "1",
-            "house": "2",
+            "prodej": "1",
+            "pronájem": "2",
+            "byt": "1",
+            "dům": "2",
             "Praha": {
                 "region": "Praha",
                 "region_entity_id": "3468",
