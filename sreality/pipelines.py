@@ -6,12 +6,13 @@
 
 # useful for handling different item types with a single interface
 
+
 class SrealityPipeline:
     def open_spider(self, spider):
         pass
 
     def close_spider(self, spider):
         pass
-    
+
     def process_item(self, item, spider):
         return item
